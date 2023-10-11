@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/d6f192e152.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="">
+    <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80)">
+                <div class="flex justify-end">
+                    <span class="h-6 w-6 bg-act text-white flex items-center justify-center rounded-full">
+                        <i class="fa-regular fa-heart"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="p-4">
+                <p class="uppercase font-semibold">
+                    <%= property.title %>
+                </p>
+                <p class="text-xl font-medium">
+                    $<%= property.price %>
+                </p>
+                <p class="opacity-70">
+                    <%= property.lane %>, <%= property.town %>
+                </p>
+                <p class="opacity-70">
+                    <%= property.city %> - <%= property.pincode %>
+                </p>
+            </div>
+            <div class="flex py-2 px-4 justify-between border-t opacity-70 font-medium border-gray-300">
+                <div class="flex items-center">
+                    <span class="mr-2">
+                        <i class="fa-solid fa-bed"></i>
+                    </span>
+                    <p class="text-sm ">
+                        <%= property.bedrooms %> 
+                    </p>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-2">
+                        <i class="fa-solid fa-bath"></i>
+                    </span>
+                    <p class="text-sm">
+                        <%= property.bathrooms %> 
+                    </p>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-2">
+                        <i class="fa-solid fa-chart-area"></i>
+                    </span>
+                    <p class="text-sm">
+                        <%= property.size %>
+                    </p>
+                </div>
+            </div>
+            <div class="px-4 pt-2 pb-2 flex items-center border-t border-gray-300">
+                <a href="properties/<%= property._id %>">
+                    <%- include("../utils/button.ejs", { title: "View Deals" ,
+                        icon: '<i class="fa-solid fa-arrow-right-long"></i>' , type: "button" }) %>
+                </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

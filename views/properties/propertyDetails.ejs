@@ -1,0 +1,145 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/d6f192e152.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                bg: '#F5F5F5',
+                primary:'#364F6B',
+                secondary:'#3FC1C9',
+                action:'#FC5185'
+              }
+            }
+          }
+        }
+      </script>
+</head> 
+<%- include("../partials/header",{isAuthenticated}) -%>
+<main class="bg-bg">
+        <div class="bg-white rounded-lg shadow-md p-8 text-primary md:mx-28 mx-5 ">
+            <!-- Property Title -->
+            <h1 class="text-2xl font-semibold mb-4"><%= property.title %></h1>
+        
+            <!-- Property Description -->
+            <p class=" mb-4"><%= property.description %></p>
+        
+            <!-- Property Information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <p class="opacity-70">Type:</p>
+                    <p class="font-semibold"><%= property.type %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Lane:</p>
+                    <p class="font-semibold"><%= property.lane %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Town:</p>
+                    <p class="font-semibold"><%= property.town %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">City:</p>
+                    <p class="font-semibold"><%= property.city %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Pincode:</p>
+                    <p class="font-semibold"><%= property.pincode %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Price:</p>
+                    <p class="font-semibold"><%= property.price %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Bedrooms:</p>
+                    <p class="font-semibold"><%= property.bedrooms %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Bathrooms:</p>
+                    <p class="font-semibold"><%= property.bathrooms %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Size:</p>
+                    <p class="font-semibold"><%= property.size %></p>
+                </div>
+                <div>
+                    <p class="opacity-70">Owner:</p>
+                    <p class="font-semibold"><%= property.owner %></p>
+                </div>
+            </div>
+        
+            <!-- Book Now Button -->
+            <% if(isAuthenticated) 
+            {
+                %> <div class="mt-4">
+                <a href="/bookings/new/<%= property._id %>/<%= property.price %>" >
+                 <%- include("../utils/button.ejs",{title:"Book Now",
+                  icon:'<i class="fa-solid fa-arrow-right-long"></i>',
+                  type:'button'}) %>
+                </a>
+            </div><%
+            } else {
+                %>
+                %> <div class="mt-10">
+                <p class="text-action text-sm">you must login to book a property</p>
+                <a href="/auth/login" >
+                 <%- include("../utils/button.ejs",{title:"Login",
+                  icon:'<i class="fa-solid fa-arrow-right-long"></i>',
+                  type:'button'}) %>
+                </a>
+            </div>
+                <%
+            }%>
+          
+            <!-- Additional Details Section -->
+<div class="mt-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <!-- Contact Seller -->
+        <div class="flex flex-row items-center">
+    <a href="#" class="text-center text-primary contact-seller" data-phone="<%= property.lane %>">
+        <i class="fas fa-envelope"></i>
+        Contact Seller
+    </a>
+</div>
+
+        <!-- View on Map -->
+        <div class="flex flex-row items-center">
+            <a href="/view-on-map" class="text-center text-primary">
+                <i class="fas fa-map-marker-alt"></i>
+                View on Map
+            </a>
+        </div>
+        <div class="flex flex-row items-center">
+            <a href="/view-on-map" class="text-center text-primary">
+                <i class="fa-solid fa-star"></i>
+                4.5 / 5
+            </a>
+            <a href="/" class="ml-3">(21 reviews)</a>
+        </div>
+        <!-- Add more options as needed -->
+    </div>
+</div>
+
+            <!-- Property Images -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4">Property Images</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <% property.images.forEach(image => { %>
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Property Image" class="w-full h-auto rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Property Image" class="w-full h-auto rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Property Image" class="w-full h-auto rounded-lg shadow-md">
+
+                        <% }); %>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+            <!-- You can add more details as needed -->
+        </div>
+        <a href="/properties">browse other properties</a>
+</body>

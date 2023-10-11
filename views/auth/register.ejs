@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Add the Tailwind CSS CDN link here -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://kit.fontawesome.com/d6f192e152.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#F5F5F5',
+                        primary: '#364F6B',
+                        secondary: '#3FC1C9',
+                        action: '#FC5185'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<main class="bg-bg text-primary min-h-screen">
+    <div class="md:mx-28 mx-5">
+        <div class="md:flex items-center md:justify-center bg-white p-4 h-screen">
+            <img src="/pics/register.png" class="h-96 mx-auto" />
+            <form class="md:w-1/2 sm:w-full" method="POST" action="/auth/register">
+                <div class="max-w-md mx-auto p-8">
+                    <h1 class="font-bold justify-center items-center flex">Holaa!</h1>
+                    <h2 class="mb-4 text-sm justify-center items-center flex">please register</h2>
+                    <div class="mb-4">
+                        <label for="username" class="block text-left font-medium">Email:</label>
+                        <input type="email" id="username" name="username"
+                            class="w-full px-3 py-2 border mt-1 rounded-lg focus:outline-none focus:border-secondary"
+                            placeholder="Enter your username">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="block text-left font-semibold">Password:</label>
+                        <input type="password" id="password" name="password"
+                            class="w-full px-3 py-2 border mt-1 rounded-lg focus:outline-none focus:border-secondary"
+                            placeholder="Enter your password">
+                    </div>
+                    <div class="text-center">
+                        <%- include("../utils/button.ejs", { title: "Register" ,
+                            icon: '<i class="fa-solid fa-arrow-right-long"></i>' , type: "submit" }) %>
+                    </div>
+                    <p class="text-sm">already have an account?
+                        <a class="underline text-secondary" href="/auth/login">Login here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+</html>

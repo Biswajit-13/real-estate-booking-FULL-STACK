@@ -1,0 +1,140 @@
+<!-- views/home.ejs -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/d6f192e152.js" crossorigin="anonymous"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#F5F5F5',
+            primary: '#364F6B',
+            secondary: '#3FC1C9',
+            action: '#FC5185'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+
+<%- include("./partials/header",{isAuthenticated}) -%>
+
+<main class="bg-bg">
+  <div class="md:mx-28 mx-5 text-primary">
+    <section class="bg-white py-16 px-4 text-center">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="flex flex-col items-center space-y-8">
+          <img src="/pics/logo.png" alt="Company Logo" class="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-primary shadow-lg" />
+          <h1 class="text-4xl font-extrabold mb-4 tracking-wider">Welcome to<br />Property Rental Platform</h1>
+          <p class="text-lg text-gray-700 mb-10 max-w-prose">Find your perfect property for rent or vacation and experience the best in hospitality.</p>
+    
+          <a href="/properties" class="inline-block ">
+            <%- include("utils/button.ejs", { title: "Explore Properties",
+              icon: '<i class="fas fa-arrow-right"></i>', type: "button" }) %>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    
+  
+    <section class="bg-white py-16 px-4">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Customer Numbers with Animation -->
+          <div class="text-center animate__animated animate__bounceInLeft">
+            <h2 class="text-3xl font-semibold mb-4">Thousands of Happy Customers</h2>
+            <p class="text-lg mb-6">Join our satisfied customers who have found their dream properties with us.</p>
+          </div>
+
+          <!-- What We Offer with Animation -->
+          <div class="text-center animate__animated animate__bounceInUp">
+            <h2 class="text-3xl font-semibold mb-4">What We Offer</h2>
+            <p class="text-lg mb-6">Discover a wide range of properties for rent, vacation, and more.</p>
+          </div>
+
+          <!-- Contact Us with Animation -->
+          <div class="text-center animate__animated animate__bounceInRight">
+            <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
+            <p class="text-lg mb-6">Have questions? Reach out to our dedicated support team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray-100 py-16 px-4" id="counting-section">
+      <div class="max-w-screen-xl mx-auto text-center">
+        <h2 class="text-3xl font-semibold mb-8">Analytics at a Glance</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Analytics Card 1 -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4">Properties Listed</h3>
+            <p class="text-4xl font-bold text-secondary mb-4" id="propertiesCount">0</p>
+          </div>
+
+          <!-- Analytics Card 2 -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4">Satisfied Customers</h3>
+            <p class="text-4xl font-bold text-secondary mb-4" id="customersCount">0</p>
+          </div>
+
+          <!-- Analytics Card 3 -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4">Locations Covered</h3>
+            <p class="text-4xl font-bold text-secondary mb-4" id="locationsCount">0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // JavaScript for counting animation
+      function countTo(target, elementId, duration) {
+    const element = document.getElementById(elementId);
+    const step = (target / duration) * 10; // Calculate step based on time and target
+    let current = 0;
+
+    const timer = setInterval(function () {
+        current += step;
+        element.textContent = Math.min(Math.floor(current), target); // Ensure it doesn't exceed the target
+
+        if (current >= target) {
+            clearInterval(timer);
+            element.textContent = target;
+        }
+    }, 10);
+}
+
+      // Intersection Observer callback function
+      function handleIntersection(entries, observer) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Start counting animation when section is in viewport
+            countTo(1200, 'propertiesCount', 3000); // Count to 1200 in 2 seconds
+            countTo(5000, 'customersCount', 3000); // Count to 5000 in 2 seconds
+            countTo(30, 'locationsCount', 3000);   // Count to 30 in 2 seconds
+            observer.unobserve(entry.target); // Unobserve to prevent multiple triggers
+          }
+        });
+      }
+
+      // Create an Intersection Observer
+      const sectionToObserve = document.getElementById('counting-section');
+      const observer = new IntersectionObserver(handleIntersection, {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px', // No margin
+        threshold: 0.5, // Trigger when 50% of the section is in viewport
+      });
+
+      // Observe the section
+      observer.observe(sectionToObserve);
+
+    </script>
+  </div>
+  </main>
+  <%- include("./partials/footer") -%>

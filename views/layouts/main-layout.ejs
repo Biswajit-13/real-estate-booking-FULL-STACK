@@ -1,0 +1,35 @@
+<!-- views/layouts/main-layout.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Property Rental Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                bg: '#F5F5F5',
+                primary:'#364F6B',
+                secondary:'#3FC1C9',
+                action:'#FC5185'
+              }
+            }
+          }
+        }
+      </script>
+    <!-- Add your CSS and JavaScript links here -->
+</head>
+<body class="bg-bg">
+    <%- include('../partials/header') %>
+
+    <main class="bg-bg">
+        <%- body %> <!-- This is where the content of child views will be inserted -->
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

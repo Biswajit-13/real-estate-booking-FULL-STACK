@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Bookings</title>
+    <!-- Add the Tailwind CSS CDN link here -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                bg: '#F5F5F5',
+                primary:'#364F6B',
+                secondary:'#3FC1C9',
+                action:'#FC5185'
+              }
+            }
+          }
+        }
+      </script>
+</head>
+
+<main class="bg-bg text-primary py-16 px-4 min-h-screen">
+    <div class="max-w-screen-xl mx-auto">
+        <h1 class="text-3xl font-semibold mb-4 text-center">User Bookings</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <% bookings.forEach((booking) => { %>
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <a href="/properties/<%= booking.property %>"
+                    class="text-primary font-semibold hover:underline block mb-2">View Property</a>
+                <p><span class="font-bold">Check-in:</span> <%= booking.checkInDate %></p>
+                <p><span class="font-bold">Check-out:</span> <%= booking.checkOutDate %></p>
+                <p><span class="font-bold">Guests:</span> <%= booking.guests %></p>
+                <p><span class="font-bold">Total Price:</span> <%= booking.totalPrice %></p>
+                <p><span class="font-bold">Status:</span> <%= booking.status %></p>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</main>
+
+</html>

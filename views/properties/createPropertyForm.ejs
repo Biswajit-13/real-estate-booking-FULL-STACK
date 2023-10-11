@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Property</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Add a new Property</h1>
+        <form action="/properties/new" method="POST">
+            <!-- Property Title -->
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <!-- Property Description -->
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <!-- Property Type -->
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="Apartment">Apartment</option>
+                    <option value="House">House</option>
+                    <option value="Vacation Rental">Vacation Rental</option>
+                </select>
+            </div>
+
+            <!-- Property Location -->
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <!-- Property Pincode -->
+            <div class="form-group">
+                <label for="pincode">Pincode:</label>
+                <input type="text" id="pincode" name="pincode" required>
+            </div>
+
+            <!-- Property Price -->
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+
+            <!-- Number of Bedrooms -->
+            <div class="form-group">
+                <label for="bedrooms">Bedrooms:</label>
+                <input type="number" id="bedrooms" name="bedrooms" required>
+            </div>
+
+            <!-- Number of Bathrooms -->
+            <div class="form-group">
+                <label for="bathrooms">Bathrooms:</label>
+                <input type="number" id="bathrooms" name="bathrooms" required>
+            </div>
+
+            <!-- Property Size -->
+            <div class="form-group">
+                <label for="size">Size (sqft):</label>
+                <input type="number" id="size" name="size" required>
+            </div>
+
+            <!-- Property Owner -->
+            <div class="form-group">
+                <label for="owner">Owner:</label>
+                <input type="text" id="owner" name="owner" required>
+            </div>
+
+            <!-- Property Images -->
+            <div class="form-group">
+                <label for="images">Images:</label>
+                <input type="file" id="images" name="images" multiple>
+            </div>
+
+            <!-- Property Availability -->
+            <!-- You can add the "Available" checkbox here as you did before -->
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit">Add Property</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<head>
+    <meta charset="utf-8">
+    <title>Property Rental Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                bg: '#F5F5F5',
+                primary:'#364F6B',
+                secondary:'#3FC1C9',
+                action:'#FC5185'
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<%- include("../partials/header",{isAuthenticated}) -%>
+    <main class="bg-bg min-h-screen text-primary">
+      <div class="md:mx-28 mx-5">
+
+        <!-- Search bar -->
+        <form action="/properties/search" method="GET" class="mb-4">
+            <div class="flex p-5">
+                <input type="text" id="search" name="search" placeholder="Search properties..."
+                    class="w-full px-3 py-2 border rounded-l-lg">
+                <button type="submit" class="px-4 py-2 bg-secondary font-medium hover:bg-action text-white rounded-r-lg">Search</button>
+            </div>
+        </form>
+
+        <!-- Iterate through the list of properties and display each one -->
+        <div class="flex flex-wrap">
+            <% properties.forEach((property)=> { %>
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-2">
+                    <%- include("./propertyCard.ejs", { property }) %>
+                </div>
+                <% }); %>
+        </div>
+      </div>
+    </main>
